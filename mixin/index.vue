@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import { ZForm, ZTable, ZPagination, queryMixin } from "@/components/ZQuery";
-import { apiCustomerList } from "@/api/tenant";
+import { ZForm, ZTable, ZPagination, queryMixin } from "./ZQuery";
+import { getList } from "../api";
 export default {
   name: "Test",
-  api: apiCustomerList,
+  api: getList,
   isPagination: true,
   rowKey: "customerId",
   components: {
@@ -67,28 +67,10 @@ export default {
       ],
       columns: [
         {
-          label: "租户名称",
+          label: "名称",
           prop: "name",
           formatter: (row) => {
             return <el-link type="primary">{row.name}</el-link>;
-          },
-        },
-        {
-          label: "手机号",
-          align: "center",
-        },
-        { label: "审批时间", prop: "gmtCreate" },
-        {
-          label: "酷家乐品牌",
-          prop: "kujialeBrandId",
-          "show-overflow-tooltip": true,
-        },
-        { label: "酷家乐部门", prop: "kujialeDepId" },
-        {
-          label: "授权APP",
-          prop: "onApp",
-          formatter: (row) => {
-            return <div>{row.onApp === "1" ? "已授权" : "未授权"}</div>;
           },
         },
       ],
